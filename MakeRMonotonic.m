@@ -2,23 +2,19 @@
 % Before calling: 
 % 1. define the R data array. As produced by the ReadRTimeSeries script.
 %    use 'arrayname=...' to put the R array into a structure array.
-% 2. Are there non-monotonic time poiints? Use tsdefine(arrayname.dt)
-% 3. If so then call: [tg,ib]=TimeBaseJump(arrayname.dt);
+% STEPS IN THIS SCRIPT
+% 1. Call: [ib]=TimeBaseJump(arrayname.dt);
 % 		where
 % 		arrayname = the name of the array currently in memory.
 %		tg = datenum array that is now monotonic.
 %		ibad = the array of points to remove.
-% 4. Then call this routine:
-%	MakeRMonotonic
-%Make the structure array 'arrayname' time monotonic. Return a new array
-%named 'aname'.
+% 2 Make the structure array 'arrayname' time monotonic. Return a new array
 %INPUT
 %  arrayname
 %OUTPUT
 %  same array with jumps removed.
-
 %==========
-% FIRST TWO TIMES ARE MONOTONIC
+% Note: The first arrayname.dt times must be monotonic.
 %==========
 cmd=sprintf('if %s.dt(1)==%s.dt(2), disp(''Scrub first point.''); %s=ScrubRTimeSeries(%s,1); end',...
 	arrayname,arrayname,arrayname,arrayname);

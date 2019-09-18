@@ -1,11 +1,17 @@
 % Make the T,B series
-
+% This is a script
+% 190124
+% Make a table of T v. R for a particular radiometer.
+% T = temperature, deC, from 10 to 40 C.
+% B is the corresponding Radiance as a ratio to 25 C.
+% Make cubic fit: p3 and b3
 T=[10:40]'+273.15;
 [B,kt15sn] = PlanckFiltered(T);
 
 t=T-273.15;
 p3=polyfit(t,B,3);
 b3=polyval(p3,t);
+% interpolation error
 er=(b3-B)*100./B;
 ermean=mean(er);
 erstd=std(er);

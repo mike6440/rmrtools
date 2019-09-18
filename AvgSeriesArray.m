@@ -1,10 +1,10 @@
 function [outav] = AvgSeriesArray(ts, deltin, avgsecs,t1,t2)
 %-------------------------------------------------------
 %function [outav] = AvgSeriesArray(ts, deltin, avgsecs,t1,t2)
-% I define a time series array as follows: Let a = arrayname.
-% a.dt = the epoch (datenum) times
-% a.vars = a str2mat list of the variables in the array.
-% a.yyyy, a.MM, a.dd, a.hh, a.mm, a.ss is the utc time corresponding t a.dt.
+% I define a time series array as follows: Let ts = arrayname.
+% ts.dt = the epoch (datenum) times
+% ts.vars = a str2mat list of the variables in the array.
+% ts.yyyy, a.MM, a.dd, a.hh, a.mm, a.ss is the utc time corresponding t a.dt.
 % Each of the data variables is filled from dta to dtb.
 %input
 %   tx is the array

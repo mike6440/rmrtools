@@ -1,20 +1,23 @@
-function [tw]=wetbulb(ta,rh,p),
+function [twa]=wetbulb(ta,rh,p),
 % function [tw]=wetbulb(ta,rh,p),
 %example tw=wetbulb(30, 80; 1000) = 27.11
 % All input are 1x1 scalars.
 
-rhx=90; tw=ta-2;
-while rhx > rh
-	rhx=TTwP2rh(ta,tw,p);
-	tw=tw-2;
+twa=[];
+for i= 1:length(ta),
+
+	rhx=90; tw=ta(i)-2;
+	while rhx > rh(i),
+		rhx=TTwP2rh(ta,tw,p);
+		tw=tw-2;
+	end
+
+	twx=[tw:.01:ta(i)]'; 
+	rhx=TTwP2rh(ta(i),twx,p(i));
+	tw=interp1(rhx,twx,rh(i));
+	%fprintf('Ta=%.2f, rh=%.1f, p=%.0f ==>> DeltaT=%.3f\n',ta(i),rh(i),p(i),ta(i)-tw);
+	twa=[twa;tw];
 end
-%fprintf('RH start=%.1f, twet=%.2f\n',rhx,tw);
-
-twx=[tw:.01:ta]';
-rhx=TTwP2rh(ta,twx,p);
-tw=interp1(rhx,twx,rh);
-%fprintf('Ta=%.2f, rh=%.1f, p=%.0f ==>> DeltaT=%.3f\n',ta,rh,p,ta-tw);
-
 return
 
 % SEE http://meted.ucar.edu/awips/validate/wetblb.htm

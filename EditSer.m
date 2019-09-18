@@ -267,13 +267,12 @@ elseif nargin == 1,
 %-------------------------------------------------------
 	if strcmp(kmode,'exit edit'),
 		
-		fprintf('EXIT EDITSER -- SAVE DATA\n');
+		disp('EXIT EDITSER');
 		if length(SAVESTRING) > 0
 			disp('SAVESTRING');
 			disp(SAVESTRING);
 			eval(SAVESTRING);
 		end
-		y3 = Y3;
 		
 		return;		
 %-------------------------------------------------------

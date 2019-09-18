@@ -10,7 +10,7 @@ function Map_Pacific(lons,lats,resolution),
 %
 %-----------------
 
-addpath('/Users/rmr/swmain/matlab/crusty/m_map');
+addpath('/Users/rmr/Dropbox/swmain/matlab/crusty/m_map');
 % DRAW A WORLD MAP
 
 if nargin==3

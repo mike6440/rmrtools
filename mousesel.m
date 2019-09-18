@@ -67,7 +67,6 @@ elseif strcmp(switchstr,'motion');
 	
 	H1 = line('xdata',[fp(1); cp(1); cp(1); fp(1); fp(1)],...
 		'ydata',[fp(2); fp(2); cp(2); cp(2); fp(2)],...
-		'erasemode','xor',...
 		'color','k','linestyle','-',...
 		'clipping','off');
 	
@@ -88,7 +87,7 @@ elseif strcmp(switchstr,'end box');
 		'windowbuttonmotionfcn', '',...
 		'windowbuttonupfcn', '');
 
-	set(ZOOM_BOX,'erasemode','normal');
+%	set(ZOOM_BOX,'erasemode','normal');
 		
 	eval('EditSer(''zoom acknowledge'');');
 

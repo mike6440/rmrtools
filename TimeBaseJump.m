@@ -24,17 +24,20 @@ function [ibad] = TimeBaseJump(tx),
 % v01 20061112 rmr -- create
 ix = find(diff(tx) <= 0);
 ibad = [];
-		% SCAN EACH NON MONOTONIC POINT
+	% SCAN EACH NON MONOTONIC POINT
 j=1;
+%fprintf('Begin at index %d\n',ix(j));
 while j <= length(ix),
-	ibad = [ibad; ix(j)+1];
-	
+	ibad = [ibad; ix(j)+1];	
+	if ix(j)+1 >= length(tx), break; end
 	k=2;
 	while tx(ix(j)+k) <= tx(ix(j)),
+		%fprintf('time index=%d, time=%d mins\n',ix(j)+k, fix((tx(ix(j)+k) - tx(ix(j)+1))*1440) );
 		ibad=[ibad; ix(j)+k];
 		k = k + 1;
+		if ix(j)+k >= length(tx); ibad=[ibad;length(tx)]; break; end
 	end
-	j=j+k-1;
+	j=j+1;
 end
 fprintf('TimeBaseJump: TS size = %d, ibad length = %d\n',length(tx), length(ibad));
 return

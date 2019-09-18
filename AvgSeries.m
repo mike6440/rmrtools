@@ -1,4 +1,4 @@
-function [dtav, xav,xavstd] = AvgSeries(dt,x,deltin,avgsecs,dt1,dt2);
+function [dtav, xav,xavstd,xmin,xmax] = AvgSeries(dt,x,deltin,avgsecs,dt1,dt2);
 % function [dtav, xav,xavstd] = AvgSeries(dt,x,deltin,avgsecs,dt1,dt2);
 % AVERAGE A TIME SERIES USING TIME CENTERED TIME BLOCKS
 %
@@ -43,11 +43,13 @@ ix1 = fix((iav - 1) * Nx / Nav)+1;
 ix2 = fix(iav * Nx / Nav);
 
 dtav = dta + (iav-1) * avgsecs/86400;
-xav = []; xavstd = [];
+xav = []; xavstd = []; xmin=[];  xmax=[];
 
 for i = 1:Nav
     xav = [xav; Meanseries(xf(ix1(i):ix2(i)))];
     xavstd = [xavstd; Stdseries(xf(ix1(i):ix2(i)))];
+    xmin=[xmin; min(ScrubSeries(xf(ix1(i):ix2(i))))];
+    xmax=[xmax; max(ScrubSeries(xf(ix1(i):ix2(i))))];
 end
 
 return

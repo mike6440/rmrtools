@@ -40,7 +40,7 @@ for nskip=-1:20,
 	% each header line must have at least one alphanumeric char
 	if any( (s >= 'a' & s <= 'z') | (s >= 'A' & s <= 'Z') )	 hdr=s; else break; end 
 end
-fprintf('nskip=%d\n',nskip);
+%fprintf('nskip=%d\n',nskip);
 if nskip >= 20, disp('HEADER FAILURE, no numeric only records.'); return; end
 
 fclose(F);
@@ -67,7 +67,7 @@ else
 		% ARRAYNAME OUT
 	a=c{2}(:,1);
 	if exist('arrayname','var'), 
-		% CONVERT 'MISSING' TO NAN
+		% CONVERT 'MISSING' TO NAN		cmd=sprintf('%s.%s = CleanSeries(a,[-inf,MISSING+1);',arrayname,c{1}{1});
 		cmd=sprintf('%s.%s = CleanSeries(a,[MISSING+1,inf]);',arrayname,c{1}{1});
 		disp(cmd); eval(cmd);
 		% BEGIN VAR ARRAY
@@ -99,7 +99,6 @@ else
 			vars=str2mat(vars,c{1}{i});
 		end
 	end
-	
 	if exist('arrayname','var'), 
 		eval(sprintf('if %s.yyyy < 1900, %s.yyyy = %s.yyyy + 2000; end',arrayname,arrayname,arrayname));
 		cmd=sprintf('%s.dt = datenum(%s.yyyy,%s.MM,%s.dd,%s.hh,%s.mm,%s.ss);',arrayname,arrayname,arrayname,arrayname,arrayname,arrayname,arrayname);

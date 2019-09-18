@@ -9,6 +9,8 @@ function [T_skin,T_uncorr] = ComputeSSST(TB,K,Pointangle,tilt,ebb,A),
 % bb emissivity, normally 1. e.g. ebb = 1.0;
 % calibration coefs 1 x 2. e.g. A=[1 0];
 % --- test ---------------
+% [ssst, ssst_uncorr]=ComputeSSST([21.572 41.228],[317.3 413.5 301.7 290.6],135,[3.8 -2.7],1,[1 0])
+% [ssst, ssst_uncorr]=ComputeSSST([15.208 29.904],[149307431 185374448 147557855 128480388],135,[-1.8 0.7],1,[1 0])
 %TB=[15.208 29.904];K = [149307431 185374448 147557855 128480388];Pointangle =  135;
 %tilt=[-1.8 0.7]; ebb = 1.0;A=[1 0];
 %[ssst, ssst_uncorr]=ComputeSSST(TB,K,Pointangle,tilt,ebb,A),
@@ -18,7 +20,7 @@ function [T_skin,T_uncorr] = ComputeSSST(TB,K,Pointangle,tilt,ebb,A),
 %=======================
 % RAD TABLE
 %=======================
-T=[-10:40]';
+T=[-10:60]';
 R=PlanckFiltered(T);
 %=======================
 % VIEWING ANGLE AND EMISSIVITY

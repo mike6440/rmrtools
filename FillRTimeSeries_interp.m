@@ -28,8 +28,10 @@ for i=1:nvars,
 	eval(sprintf('var=deblank(%s.vars(i,:));',arrayname));
 	if(strcmp(var,'yyyy') | strcmp(var,'MM') | strcmp(var,'dd') | strcmp(var,'hh') | strcmp(var,'mm') | strcmp(var,'ss') | strcmp(var,'nrec')),
 	else
+		disp(['Process ',var,' in ',arrayname])
 		cmd=sprintf('[outf.dt,outf.%s]=FillTimeSeries1sec_interp(%s.dt,%s.%s,DELTAT,DTA,DTB);',var,arrayname,arrayname,var);
-		disp(cmd); eval(cmd);
+		%disp(cmd);
+		eval(cmd);
 	end
 end
 		% ARRAY TIME BASE
